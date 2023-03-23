@@ -1,0 +1,485 @@
+/* 
+&display=swap
+&subset=cyrillic-ext 
+*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+/* ОБНУЛЕНИЕ СТИЛЕЙ */
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	box-sizing: border-box;
+}
+li {
+	list-style: none;
+}
+a,
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: inherit;
+	font-size: inherit;
+}
+img {
+	vertical-align: top;
+}
+html,
+body {
+	height: 100%;
+}
+html {
+	font-size: 16px; /* по умолчанию */
+}
+body {
+	line-height: 1;
+	/* color: #000; */
+	/* font-family:""; */
+	overflow-x: hidden;
+	font-family: 'Roboto', sans-serif;
+}
+.wrapper {
+	min-height: 100%;
+}
+/* ------------------------------ */
+
+.block {
+	/* По умолчанию */
+	/* position: static; */
+	/*
+	top
+	left 
+	right
+	bottom
+	z-index
+	*/
+}
+.block__item {
+	padding: 15px;
+	color: #fff;
+	font-size: 20px;
+}
+.block__item_color-brown {
+	background-color: #794f45;
+}
+.block__item_color-purple {
+	background-color: #77608d;
+}
+.block__item_color-green {
+	background-color: #7a956b;
+}
+
+/* -------------- */
+
+/* Статичное положение объекта (по умолчанию) */
+/* top,left,right,bottom,z-index - не работают */
+/* position: static; */
+
+/* -------------- */
+
+/*
+Положение элемента устанавливается относительно 
+его исходного положения в коде. 
+Добавление свойств left, top, right и bottom изменяет 
+позицию элемента и сдвигает его в ту или иную сторону 
+от первоначального расположения.
+*/
+/* top,left,right,bottom,z-index - работают */
+/* position: relative; */
+
+/* -------------- */
+/*
+Элемент якобы вырывается из кода и зависайт в воздухе. 
+Он перестает влиять на остальные элементы. 
+Добавление свойств left, top, right и bottom 
+изменяет позицию элемента и сдвигает его 
+в ту или иную сторону относительно родителя 
+у колого задан параметр position: relative;
+
+1) Объект теряет свое "тело", и зависает в воздухе.
+2) Другие объекты занимают его место
+3) Объект превращается в строчный, тоесть 
+размер зависит от контента в нем
+4) Объект позиционируется обносительно первого родителя,
+для которого указано position: relative;
+5) Необходимо сопровождать свойствами top,left,right,bottom
+
+*/
+/* top,left,right,bottom,z-index - работают */
+/* position: absolute; */
+
+/* -------------- */
+
+/*
+Элемент якобы вырывается из кода и зависайт в воздухе. 
+Фиксируется, то есть не скролится вместе с содержимым. 
+Он перестает влиять на остальные элементы. 
+Добавление свойств left, top, right и bottom изменяет позицию элемента 
+и сдвигает его в ту или иную сторону относительно окна браузера.
+*/
+
+/*
+1) Объект теряет свое "тело", и зависает в воздухе.
+2) Другие объекты занимают его место
+3) Объект превращается в строчный, тоесть 
+размер зависит от контента в нем
+4) Объект позиционируется обносительно окна браузера
+5) Необходимо сопровождать свойствами top,left,right,bottom
+
+*/
+
+/* top,left,right,bottom,z-index - работают */
+/* position: fixed; */
+
+/* -------------- */
+
+/*
+Это гибридное сочетание значений static и fixed. 
+Изначально єлемент ведет себя как static 
+но после того как скролл доходит до его границы он становиться 
+fixed и прилипает к указанной позиции top или bottom.
+*/
+
+/* top,left,right,bottom,z-index - работают */
+/* position: sticky; */
+
+/* -------------- */
+
+/*
+Каждый элемент может находиться как ниже, 
+так и выше других объектов веб-страницы, 
+их размещением по z-оси и управляет z-index. 
+Это свойство работает только для элементов, 
+у которых значение position отличное от static.
+*/
+
+/* z-index: auto; */
+
+/* -------------- */
+/*
+ Свойства позиционирования,
+можно указавать px, %, другие ед.
+top
+left
+right
+bottom
+*/
+
+/* -------------- */
+
+/* Практика */
+/*
+.list {
+}
+.list__item {
+	position: relative;
+	padding: 0px 0px 0px 25px;
+}
+.list__item::before {
+	content: "";
+	background: url("../img/icon.png") 0 0 no-repeat;
+	width: 25px;
+	height: 25px;
+	position: absolute;
+	top: -6px;
+	left: 0px;
+}
+.list__item:not(:last-child) {
+	margin: 0px 0px 10px 0px;
+}
+.header {
+	background-color: #7a956b;
+	padding: 20px;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 100;
+}
+.main {
+	padding: 30px 0px 0px 0px;
+}
+.image {
+	position: relative;
+	display: inline-block;
+}
+.image::before {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+.image:hover::before {
+	opacity: 0;
+}
+.image__item {
+	width: 200px;
+}
+*/
+.header {
+	background: #5D62B5;
+	padding: 30px;
+	font-size: 25px;
+	color: #fff;
+	position: fixed;
+	top: 0;
+	z-index: 100;
+	width: 100%;
+}
+.main{
+	padding: 200px 0px 0px 0px;
+}
+.our {
+	background-color: #2AB1AD;
+	color: #fff;
+	padding: 0px 0px 100px 0px;
+}
+.main__our {
+	margin-bottom: 200px;
+}
+.our__container {
+	max-width: 1020px;
+	margin: 0px auto 0px;
+	position: relative;
+}
+.our__header {
+	margin-bottom: 80px;
+}
+.header-items {
+	font-size: 0;
+}
+.header-items__item {
+	display: inline-block;
+	width: 100%;
+	max-width: 50%;
+	font-size: 36px;
+	vertical-align: top;
+	z-index: 1;
+}
+.header-items__item_bg::before {
+	top: 0;
+	right: -90px;
+	content: url("../img/Blob.png");
+	position: absolute;
+	z-index: 0;
+}
+.header-items__item_padding {
+	padding: 112px 0px 0px 0px; 
+}
+.header-items__title {
+	position: relative;
+	padding: 0px 0px 0px 33px;
+	margin-bottom: 31px;
+	font-weight: 700;
+	font-size: 12px;
+	line-height: 24px;
+	align-items: center;
+	letter-spacing: 2.5px;
+	text-transform: uppercase;
+}
+.header-items__title::before {
+	content: "";
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	left: 0;
+    top: 0;
+	background: url(../img/Overline_Mark.svg) 0 -1px no-repeat;
+	
+}
+.header-items__subtitle {
+	font-weight: 900;
+	font-size: 36px;
+	line-height: 42px;
+	max-width: 441px;
+}
+.header-items__img {
+	margin: 0px 0px 0px auto;
+	border-radius: 42px;
+	display: block;
+	width: 498px;
+	position: relative;
+	bottom: 80px;
+}
+.our__body {
+}
+.body-our {
+}
+.body-our__items {
+	font-size: 0;
+}
+.body-our__item {
+	display: inline-block;
+	width: 100%;
+	max-width: 25%;
+}
+.item-our-column {
+	font-size: 16px;
+}
+.item-our-column__img {
+	display: inline-block;
+	vertical-align: top;
+	margin-right: 11px;
+}
+.item-our-column__image {
+}
+.item-our-column__body {
+	max-width: 150px;
+	display: inline-block;
+	vertical-align: top;
+	padding: 0px 11px 0px 0px;
+}
+.item-our-column__title {
+	font-weight: 900;
+	font-size: 36px;
+	line-height: 42px;
+}
+.item-our-column__text {
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 24px;
+	letter-spacing: 0.15px;
+	color: #5D62B5;
+}
+
+
+.test {
+	height: 300px;
+	background-color: #77608d;
+	position: relative;
+}
+.test__container {
+	max-width: 1020px;
+	margin: 50px auto;
+}
+.test__block {
+	text-align: center;
+	font-size: 30px;
+	color: #fff;
+	padding: 20px;
+}
+.test__block_red {
+	background-color: rgb(153, 29, 29);
+}
+.test__block_yellow {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 20%;
+	background-color: rgb(207, 207, 31);
+}
+.test__block_brown {
+	background-color:#794f45;
+}
+
+
+.link {
+	position: relative;
+	display: inline-block;
+}
+.link:hover:before {
+	border-radius: 42px;
+	content: "";
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.663);
+	position: absolute;
+	z-index: 2;
+}
+.link__img {
+
+}
+
+
+.who-we-are {
+}
+.who-we-are__container {
+	position: relative;
+	border-radius: 40px;
+	background-color: #5D62B5;
+	max-width: 1020px;
+	margin: 0 auto;
+	color: #fff;
+	padding: 100px 87px 0px;
+}
+.who-we-are__container::before {
+	content: "";
+	bottom: -140px;
+	left: -15px;
+	width: 655px;
+	height: 591px;
+	position: absolute;
+	z-index: 0;
+	background: url(../img/Blob_2.png) 0 0 no-repeat;
+}
+.who-we-are__decor {
+	top: -110px;
+	right: -76px;
+	position: absolute;
+}
+.who-we-are__img-decor {
+}
+.who-we-are__header {
+	max-width: 583px;
+}
+.who-we-are__items {
+	position: relative;
+	z-index: 1;
+}
+.who-we-are__title {
+	padding-left: 33px;
+	font-weight: 700;
+	font-size: 12px;
+	line-height: 24px;
+	letter-spacing: 2.5px;
+	text-transform: uppercase;
+	color: #F5F5F5;
+	margin: 0px 0px 33px 0px;
+	position: relative;
+}
+.who-we-are__title::before {
+	content: "";
+	display: inline-block;
+	top: 0;
+	left: 0;
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	background: url(../img/Overline.svg) 0 -1px no-repeat;
+}
+.who-we-are__sub-title {
+	font-weight: 900;
+	font-size: 36px;
+	line-height: 42px;
+	margin: 0px 0px 36px 0px;
+}
+.who-we-are__text {
+	line-height: 24px;
+	letter-spacing: 0.15px;
+	color: #F5F5F5;
+	margin: 0px 0px 54px 0px;
+}
+.who-we-are__image {
+	margin-top: -100px;
+	position: relative;
+	top: 120px;
+}
+.who-we-are__img {
+	border-radius: 40px;
+	display: block;
+	width: 846px;
+	margin: 0 auto;
+}
